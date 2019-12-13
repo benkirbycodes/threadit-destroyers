@@ -1,5 +1,6 @@
 import express from "express";
 import usersService from "../services/UsersService"
+import postsService from "../services/PostsService"
 
 export default class UsersController {
   constructor() {
