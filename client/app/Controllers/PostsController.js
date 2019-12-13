@@ -6,20 +6,6 @@ function _drawPosts() {
   let posts = store.State.Posts;
   console.log(posts);
 }
-function drawForm() {
-  let template = `<form onsubmit="app.PostsController.addPostAsync(event)">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter Title...">
-  </div>
-  <div class="form-group">
-    <label for="body">Opening Line</label>
-    <input type="text" class="form-control" id="body" placeholder="Start Your Story...">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>`;
-  document.querySelector("#posts").innerHTML = template;
-}
 
 //Public
 export default class PostsController {
@@ -27,7 +13,7 @@ export default class PostsController {
     store.subscribe("posts", _drawPosts);
   }
   drawForm() {
-    let template = `<form onsubmit="app.PostsController.addPostAsync(event)">
+    let template = `<form onsubmit="app.postsController.addPostAsync(event)">
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter Title...">
@@ -41,13 +27,15 @@ export default class PostsController {
     document.querySelector("#posts").innerHTML = template;
   }
   async addPostAsync(event) {
+    console.log(event);
     event.preventDefault();
     let form = event.target;
+    console.log("from postsController", form);
     let post = {
       title: form.title.value,
-      body: form.body.value,
-      userId: form.userId.value
+      body: form.body.value
     };
+    console.log("from POstConstroller", post);
     form.reset();
     try {
       await PostsService.addPostAsync(post);
