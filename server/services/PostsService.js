@@ -9,11 +9,19 @@ class PostsService {
     return await _repository.find({})
   }
   async getById(id) {
-    return await _repository.findById(id);
+    let data = await _repository.findById(id);
+    if (!data) {
+      throw new Error("Invalid Update Id");
+    }
+    return data;
   }
 
   async getPostsByUsertId(userId) {
-    return await _repository.findById(userId);
+    let data = await _repository.find({ userId });
+    if (!data) {
+      throw new Error("Invalid Update Id");
+    }
+    return data;
   }
 
   async create(rawData) {
