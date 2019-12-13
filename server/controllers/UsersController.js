@@ -1,5 +1,6 @@
 import express from "express";
 import usersService from "../services/UsersService"
+import postsService from "../services/PostsService"
 
 export default class UsersController {
   constructor() {
@@ -24,7 +25,7 @@ export default class UsersController {
 
   async getPostsByUserId(req, res, next) {
     try {
-      let data = await postsService.getById(req.params.id);
+      let data = await postsService.getPostsByUserId(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);
