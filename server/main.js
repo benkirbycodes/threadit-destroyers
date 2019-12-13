@@ -4,6 +4,8 @@ import cors from "cors";
 import bp from "body-parser";
 import DbContext from "./db/dbConfig";
 import UsersController from "./controllers/UsersController"
+import PostsController from "./controllers/PostsController"
+import CommentsController from "./controllers/CommentsController"
 
 const port = process.env.PORT || 3000;
 
@@ -35,6 +37,8 @@ server.use(bp.json());
 
 //NOTE Register all our routes(doorways that can be accessed in our app)
 server.use("/api/users", new UsersController().router);
+server.use("/api/posts", new PostsController().router);
+server.use("/api/comments", new CommentsController().router);
 
 //NOTE Everything below this line always stays the same
 
