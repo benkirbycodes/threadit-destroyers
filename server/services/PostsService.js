@@ -16,7 +16,7 @@ class PostsService {
     return data;
   }
 
-  async getPostsByUsertId(userId) {
+  async getPostsByUserId(userId) {
     let data = await _repository.find({ userId });
     if (!data) {
       throw new Error("Invalid Update Id");
