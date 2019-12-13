@@ -13,7 +13,7 @@ export default class PostsController {
     store.subscribe("posts", _drawPosts);
   }
   drawForm() {
-    let template = `<form onsubmit="app.postsController.addPostAsync(event)">
+    let template = /*html*/ `<form onsubmit="app.postsController.addPostAsync(event)">
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter Title...">
