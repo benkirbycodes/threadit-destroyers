@@ -6,18 +6,14 @@ export default class Post {
     this.userId = data.userId;
   }
 
-  get addPostTemplate() {
+  get PostTemplate() {
     /*html*/
-    return ` <form onsubmit="app.postsController.addPostAsync(event)">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" name="title" class="form-control"  aria-describedby="title" placeholder="Enter Title...">
+    return `
+    <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">${this.title}</h5>
+    <p class="card-text">${this.body}</p>
   </div>
-  <div class="form-group">
-    <label for="body">Opening Line</label>
-    <input type="text" class="form-control" name="body"  placeholder="Start Your Story...">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>`;
+</div>`;
   }
 }

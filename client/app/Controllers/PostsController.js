@@ -3,14 +3,18 @@ import store from "../store.js";
 
 //Private
 function _drawPosts() {
-  let posts = store.State.Posts;
+  let posts = store.State.posts;
   console.log(posts);
+  let template = "";
+  posts.forEach(post => (template += post.PostTemplate));
+  document.querySelector("#posts").innerHTML = template;
 }
 
 //Public
 export default class PostsController {
   constructor() {
     store.subscribe("posts", _drawPosts);
+    _drawPosts();
   }
   drawForm() {
     let template = /*html*/ `<form onsubmit="app.postsController.addPostAsync(event)">
