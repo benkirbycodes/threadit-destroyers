@@ -3,7 +3,7 @@ import Post from "../Models/Post.js";
 
 // @ts-ignore
 const _postApi = axios.create({
-  baseURL: "/api",
+  baseURL: "/api/posts",
   timout: 8000
 });
 class PostsService {
