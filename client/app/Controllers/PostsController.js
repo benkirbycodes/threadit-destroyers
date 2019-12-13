@@ -30,6 +30,13 @@ export default class PostsController {
   </form>`;
     document.querySelector("#posts").innerHTML = template;
   }
+  loadDetailView(postId) {
+    let post = store.State.posts.find(p => p.id == postId);
+    console.log(post);
+    let template = post.PostDetailTemplate;
+    console.log(template);
+    document.querySelector("#posts").innerHTML = template;
+  }
   async addPostAsync(event) {
     console.log(event);
     event.preventDefault();
