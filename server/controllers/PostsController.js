@@ -1,5 +1,6 @@
 import express from "express";
 import postsService from "../services/PostsService";
+import commentsService from "../services/CommentsService";
 
 export default class PostsController {
   constructor() {
@@ -33,7 +34,7 @@ export default class PostsController {
 
   async getCommentsByPostId(req, res, next) {
     try {
-      let data = await commentsService.getById(req.params.id);
+      let data = await commentsService.getCommentsByPostId(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);

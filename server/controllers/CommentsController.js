@@ -21,8 +21,6 @@ export default class CommentsController {
     }
   }
 
-
-
   async create(req, res, next) {
     try {
       let data = await commentsService.create(req.body);
