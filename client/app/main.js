@@ -1,7 +1,9 @@
-import ValuesController from "./Controllers/ValuesController.js";
+import CommentsController from "./Controllers/CommentsController.js";
+import PostsController from "./Controllers/PostsController.js";
 
 class App {
-  valuesController = new ValuesController();
+  commentsController = new CommentsController();
+  postsController = new PostsController();
 }
 
 window["app"] = new App();
