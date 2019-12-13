@@ -27,4 +27,26 @@ export default class PostsController {
       console.error("Error:", error);
     }
   }
+  async removePostAsync(postId) {
+    //NOTE deal with only allowing creator to delete
+    try {
+      await PostsService.removePostAsync(postId);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  async editPostAsync(event) {
+    event.preventDefault();
+    let form = event.target;
+    let update = {
+      body: form.body.value,
+      postId: form.postId.value
+    };
+    form.reset();
+    try {
+      await PostsService.editPostAsync(update);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
 }
