@@ -11,7 +11,7 @@ export default class Comment {
     <div class="card bg-info text-white" style="width: 18rem;">
   <div class="card-body">
     <p class="card-text">${this.body}</p>
-    <button type="button"  onclick="app.commentsController.removeCommentAsync('${this.id}')">x</button>
+    <button type="button"  onclick="app.commentsController.removeCommentAsync('${this.id}','${this.postId}')">x</button>
   </div>
 </div>
     

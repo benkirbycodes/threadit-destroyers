@@ -2,9 +2,14 @@ import store from "../store.js";
 import Comment from "../Models/Comment.js";
 
 // @ts-ignore
-const _commentApi = axios.create({
+const _basicApi = axios.create({
   baseURL: "/api",
   timout: 8000
+});
+// @ts-ignore
+const _commentApi = axios.create({
+  baseURL: "/api/comments",
+  timeout: 8000
 });
 class CommentsService {
   async editCommentAsync(update) {
@@ -14,19 +19,20 @@ class CommentsService {
     let res = await _commentApi.put(update.commentId, comment);
     this.getCommentsAsync();
   }
-  async removeCommentAsync(commentId) {
+  async removeCommentAsync(commentId, postId) {
+    console.log(commentId, postId);
     let res = await _commentApi.delete(commentId);
-    this.getCommentsAsync();
+    this.getCommentsAsync(postId);
   }
   async addCommentAsync(comment) {
     console.log(comment);
 
-    let res = await _commentApi.post("comments", comment);
+    let res = await _basicApi.post("comments", comment);
     console.log("From add CommentAsync", res);
     this.getCommentsAsync(comment.postId);
   }
   async getCommentsAsync(postId) {
-    let res = await _commentApi.get("posts/" + postId + "/comments");
+    let res = await _basicApi.get("posts/" + postId + "/comments");
     //NOTE res.data path may be wrong
     let comments = res.data.map(c => new Comment(c));
     store.commit("comments", comments);
