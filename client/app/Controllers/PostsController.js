@@ -1,7 +1,7 @@
 import PostsService from "../Services/PostsService.js";
 import store from "../store.js";
 import CommentsService from "../Services/CommentsService.js";
-import commentsService from "../Services/CommentsService.js";
+
 import postsService from "../Services/PostsService.js";
 
 //Private
@@ -69,8 +69,7 @@ export default class PostsController {
     let template = post.PostDetailTemplate;
     console.log(template);
     document.querySelector("#posts").innerHTML = template;
-
-    commentsService.getCommentsAsync(postId);
+    CommentsService.getCommentsAsync(postId);
   }
   async addPostAsync(event) {
     console.log(event);
@@ -105,9 +104,12 @@ export default class PostsController {
       body: form.body.value,
       postId: postId
     };
+    CommentsService.getCommentsAsync(postId);
+
     form.reset();
     try {
       await PostsService.editPostAsync(update);
+      CommentsService.getCommentsAsync(postId);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -119,6 +121,7 @@ export default class PostsController {
     console.log(post);
     let template = post.editPostDetailTemplate;
     document.querySelector("#posts").innerHTML = template;
+    CommentsService.getCommentsAsync(postId);
   }
   resetActivePost() {
     event.preventDefault();

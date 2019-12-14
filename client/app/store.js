@@ -4,6 +4,7 @@ let _state = {
   activePost: {},
   posts: [],
   comments: [],
+  activeComment: {},
   users: []
 };
 
@@ -14,6 +15,7 @@ let _listeners = {
   activePost: [],
   posts: [],
   comments: [],
+  activeComment: [],
   users: []
 };
 

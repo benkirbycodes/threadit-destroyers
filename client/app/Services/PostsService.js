@@ -20,6 +20,7 @@ class PostsService {
     //NOTE How do you make sure only creator can edit?
     let res = await _postApi.put(update.postId, update);
     store.commit("activePost", new Post(res.data));
+
     // this.getPostsAsync();
   }
   async removePostAsync(postId) {

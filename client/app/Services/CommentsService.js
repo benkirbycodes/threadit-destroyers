@@ -1,5 +1,6 @@
 import store from "../store.js";
 import Comment from "../Models/Comment.js";
+import CommentsController from "../Controllers/CommentsController.js";
 
 // @ts-ignore
 const _basicApi = axios.create({
@@ -19,6 +20,7 @@ class CommentsService {
     //NOTE How do you make sure only creator can edit?
     let res = await _commentApi.put(update.commentId, update);
     console.log(res);
+    //store.commit("activeComment", {});
     this.getCommentsAsync(update.postId);
   }
   async removeCommentAsync(commentId, postId) {
@@ -37,6 +39,7 @@ class CommentsService {
     let res = await _basicApi.get("posts/" + postId + "/comments");
     //NOTE res.data path may be wrong
     let comments = res.data.map(c => new Comment(c));
+    //store.commit("activeComment", new Comment(res.data));
     store.commit("comments", comments);
   }
 }
