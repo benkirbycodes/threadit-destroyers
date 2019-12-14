@@ -7,6 +7,10 @@ const _postApi = axios.create({
   timout: 8000
 });
 class PostsService {
+  resetActivePost() {
+    store.commit("activePost", {});
+    this.getPostsAsync();
+  }
   constructor() {
     this.getPostsAsync();
   }
@@ -14,8 +18,9 @@ class PostsService {
     //NOTE Check that update.postId is what you think it is
     let post = store.State.posts.find(p => p.id == update.postId);
     //NOTE How do you make sure only creator can edit?
-    let res = await _postApi.put(update.postId, post);
-    this.getPostsAsync();
+    let res = await _postApi.put(update.postId, update);
+    store.commit("activePost", new Post(res.data));
+    // this.getPostsAsync();
   }
   async removePostAsync(postId) {
     let res = await _postApi.delete(postId);

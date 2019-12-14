@@ -2,13 +2,23 @@ import PostsService from "../Services/PostsService.js";
 import store from "../store.js";
 import CommentsService from "../Services/CommentsService.js";
 import commentsService from "../Services/CommentsService.js";
+import postsService from "../Services/PostsService.js";
 
 //Private
 function _drawPosts() {
+  if (store.State.activePost.id) {
+    return;
+  }
   let posts = store.State.posts;
   console.log(posts);
   let template = "";
   posts.forEach(post => (template += post.PostTemplate));
+
+  document.querySelector("#posts").innerHTML = template;
+}
+function _drawActivePost() {
+  let post = store.State.activePost;
+  let template = post.PostDetailTemplate;
   document.querySelector("#posts").innerHTML = template;
 }
 
@@ -16,6 +26,7 @@ function _drawPosts() {
 export default class PostsController {
   constructor() {
     store.subscribe("posts", _drawPosts);
+    store.subscribe("activePost", _drawActivePost);
     _drawPosts();
   }
   async addCommentAsync(event, postId) {
@@ -58,6 +69,7 @@ export default class PostsController {
     let template = post.PostDetailTemplate;
     console.log(template);
     document.querySelector("#posts").innerHTML = template;
+
     commentsService.getCommentsAsync(postId);
   }
   async addPostAsync(event) {
@@ -86,12 +98,12 @@ export default class PostsController {
       }
     }
   }
-  async editPostAsync(event) {
+  async editPostAsync(event, postId) {
     event.preventDefault();
     let form = event.target;
     let update = {
       body: form.body.value,
-      postId: form.postId.value
+      postId: postId
     };
     form.reset();
     try {
@@ -99,5 +111,17 @@ export default class PostsController {
     } catch (error) {
       console.error("Error:", error);
     }
+  }
+
+  loadEditPostDetailTemplate(postId) {
+    console.log(postId);
+    let post = store.State.posts.find(p => p.id == postId);
+    console.log(post);
+    let template = post.editPostDetailTemplate;
+    document.querySelector("#posts").innerHTML = template;
+  }
+  resetActivePost() {
+    event.preventDefault();
+    PostsService.resetActivePost();
   }
 }

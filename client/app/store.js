@@ -1,6 +1,7 @@
 import Post from "./Models/Post.js";
 
 let _state = {
+  activePost: {},
   posts: [],
   comments: [],
   users: []
@@ -10,6 +11,7 @@ let _state = {
  * @type {{[x:string]: function[]}}
  */
 let _listeners = {
+  activePost: [],
   posts: [],
   comments: [],
   users: []
