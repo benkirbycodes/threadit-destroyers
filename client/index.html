@@ -9,16 +9,18 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="assets/style.css" />
+    <link rel=“stylesheet”
+    href=“https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css”/>
 
     <title>Campfire</title>
   </head>
 
-  <body>
+  <body class="bg-dark">
     <!--Header, Logo-->
     <header class="container-fluid">
       <div class="row">
-        <div class="col-12 p-1 bg-dark sticky-top">
-          <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="col-12 p-1 bg-dark text-center sticky-top">
+          <nav class="navbar text-center navbar-expand-lg navbar-light">
             <a class="navbar-brand text-white" href="#">
               <img
                 src="/assets/campfire_transparent.png"
@@ -26,17 +28,18 @@
                 height="60"
                 class="d-inline-block align-top"
                 alt=""
-              />Campfire</a
-            >
+              />
+            </a>
+            <h2 class="title pr-4 text-warning">Campfire</h2>
 
             <!-- Add a Post button TODO style the button, add function-->
             <form class="form-inline">
               <button
                 onclick="app.postsController.loadForm()"
-                class="btn btn-outline-success"
+                class="btn btn-outline-danger"
                 type="button"
               >
-                Add/Create Post button
+                Start your story
               </button>
             </form>
           </nav>
@@ -46,7 +49,7 @@
     <!--Posts-->
     <main class="container">
       <div class="row">
-        <div class="col-12" id="posts"></div>
+        <div class="col-12 text-center" id="posts"></div>
       </div>
     </main>
     <!--

@@ -50,15 +50,15 @@ export default class PostsController {
   }
   loadForm() {
     let template = /*html*/ `<form onsubmit="app.postsController.addPostAsync(event)">
-    <div class="form-group">
+    <div class="form-group text-warning">
       <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" required aria-describedby="title" placeholder="Enter Title...">
+      <input type="text" class="form-control text-warning " id="title" required aria-describedby="title" placeholder="Enter Title...">
     </div>
-    <div class="form-group">
+    <div class="form-group text-warning">
       <label for="body">Opening Line</label>
-      <input type="text" class="form-control" id="body" required placeholder="Start Your Story...">
+      <input type="text" class="form-control text-warning" id="body" required placeholder="Start Your Story...">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-sm btn-dark btn-outline-warning">Begin</button>
   </form>
     `;
     document.querySelector("#posts").innerHTML = template;
@@ -78,8 +78,8 @@ export default class PostsController {
     console.log("from postsController", form);
     let post = {
       title: form.title.value,
-      body: form.body.value,
-      upCount: form.upCount.value
+      body: form.body.value
+      //upCount: form.upCount.value
     };
     console.log("from POstConstroller", post);
     form.reset();
