@@ -3,7 +3,7 @@ import Comment from "../Models/Comment.js";
 
 // @ts-ignore
 const _commentApi = axios.create({
-  baseURL: "",
+  baseURL: "/api",
   timout: 8000
 });
 class CommentsService {
@@ -19,11 +19,14 @@ class CommentsService {
     this.getCommentsAsync();
   }
   async addCommentAsync(comment) {
-    let res = await _commentApi.post("", comment);
-    this.getCommentsAsync();
+    console.log(comment);
+
+    let res = await _commentApi.post("comments", comment);
+    console.log("From add CommentAsync", res);
+    this.getCommentsAsync(comment.postId);
   }
-  async getCommentsAsync() {
-    let res = await _commentApi.get();
+  async getCommentsAsync(postId) {
+    let res = await _commentApi.get("posts/" + postId + "/comments");
     //NOTE res.data path may be wrong
     let comments = res.data.map(c => new Comment(c));
     store.commit("comments", comments);

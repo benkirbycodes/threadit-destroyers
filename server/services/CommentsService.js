@@ -7,13 +7,13 @@ class CommentsService {
   async getById(id) {
     let data = await _repository.findById(id);
     if (!data) {
-      throw new Error("Invalid Update Id");
+      throw new Error("Invalid Update Id, CommentsService Server");
     }
     return data;
   }
 
   async getCommentsByPostId(postId) {
-    let data = await _repository.find({ postId })
+    let data = await _repository.find({ postId });
     if (!data) {
       throw new Error("Invalid Id");
     }
