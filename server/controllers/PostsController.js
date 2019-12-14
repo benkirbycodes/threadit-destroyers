@@ -1,7 +1,6 @@
 import express from "express";
 import postsService from "../services/PostsService";
 import commentsService from "../services/CommentsService";
-
 export default class PostsController {
   constructor() {
     this.router = express

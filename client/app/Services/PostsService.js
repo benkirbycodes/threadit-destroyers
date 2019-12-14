@@ -3,10 +3,13 @@ import Post from "../Models/Post.js";
 
 // @ts-ignore
 const _postApi = axios.create({
-  baseURL: "",
+  baseURL: "/api/posts",
   timout: 8000
 });
 class PostsService {
+  constructor() {
+    this.getPostsAsync();
+  }
   async editPostAsync(update) {
     //NOTE Check that update.postId is what you think it is
     let post = store.State.posts.find(p => p.id == update.postId);
@@ -24,7 +27,6 @@ class PostsService {
   }
   async getPostsAsync() {
     let res = await _postApi.get();
-    //NOTE res.data path may be wrong
     let posts = res.data.map(p => new Post(p));
     store.commit("posts", posts);
   }
