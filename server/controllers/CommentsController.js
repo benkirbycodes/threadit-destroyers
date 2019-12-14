@@ -9,6 +9,7 @@ export default class CommentsController {
       .get("/:id", this.getById)
       .post("", this.create)
       .put("/:id", this.edit)
+      .put("/:id", this.updateDislikes)
       .delete("/:id", this.delete);
   }
 
@@ -37,6 +38,8 @@ export default class CommentsController {
       next(error);
     }
   }
+
+
   async delete(req, res, next) {
     try {
       await commentsService.delete(req.params.id);
