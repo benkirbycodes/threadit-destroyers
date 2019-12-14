@@ -1,6 +1,7 @@
 import express from "express";
 import usersService from "../services/UsersService"
 import postsService from "../services/PostsService"
+import commentsService from "../services/CommentsService"
 
 export default class UsersController {
   constructor() {
@@ -9,6 +10,7 @@ export default class UsersController {
       //NOTE  each route gets registered as a .get, .post, .put, or .delete, the first parameter of each method is a string to be concatinated onto the base url registered with the route in main. The second parameter is the method that will be run when this route is hit.
       .get("/:id", this.getById)
       .get("/:id/posts", this.getPostsByUserId)
+      .get("/:id/comments", this.getCommentsByUserId)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete);
@@ -31,6 +33,16 @@ export default class UsersController {
       next(error);
     }
   }
+  async getCommentsByUserId(req, res, next) {
+    try {
+      let data = await commentsService.getCommentsByUserId(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
   async create(req, res, next) {
     try {
       let data = await usersService.create(req.body);
