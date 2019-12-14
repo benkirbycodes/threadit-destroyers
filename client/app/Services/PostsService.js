@@ -7,6 +7,24 @@ const _postApi = axios.create({
   timout: 8000
 });
 class PostsService {
+  async downVote(postId) {
+    console.log(postId);
+    let post = store.State.posts.find(p => p.id == postId);
+    console.log(post);
+    post.downCount -= 1;
+    let res = await _postApi.put(post.id, post);
+    console.log(post.downCount);
+    store.commit("activePost", new Post(res.data));
+  }
+  async upVote(postId) {
+    console.log(postId);
+    let post = store.State.posts.find(p => p.id == postId);
+    console.log(post);
+    post.upCount += 1;
+    let res = await _postApi.put(post.id, post);
+    console.log(post.upCount);
+    store.commit("activePost", new Post(res.data));
+  }
   resetActivePost() {
     store.commit("activePost", {});
     this.getPostsAsync();

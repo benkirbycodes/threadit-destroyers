@@ -4,6 +4,8 @@ export default class Post {
     this.title = data.title;
     this.body = data.body;
     this.userId = data.userId;
+    this.upCount = data.upCount;
+    this.downCount = data.downCount;
   }
 
   get PostTemplate() {
