@@ -9,7 +9,6 @@ export default class CommentsController {
       .get("/:id", this.getById)
       .post("", this.create)
       .put("/:id", this.edit)
-      .put("/:id", this.updateDislikes)
       .delete("/:id", this.delete);
   }
 
