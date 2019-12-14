@@ -78,7 +78,8 @@ export default class PostsController {
     console.log("from postsController", form);
     let post = {
       title: form.title.value,
-      body: form.body.value
+      body: form.body.value,
+      upCount: form.upCount.value
     };
     console.log("from POstConstroller", post);
     form.reset();
@@ -126,5 +127,21 @@ export default class PostsController {
   resetActivePost() {
     event.preventDefault();
     PostsService.resetActivePost();
+  }
+  async upVote(postId) {
+    try {
+      await PostsService.upVote(postId);
+      CommentsService.getCommentsAsync(postId);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async downVote(postId) {
+    try {
+      await PostsService.downVote(postId);
+      CommentsService.getCommentsAsync(postId);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

@@ -49,4 +49,18 @@ export default class CommentsController {
     document.querySelector("#comments").innerHTML = template;
     //CommentsService.getCommentsAsync(postId);
   }
+  async upVote(commentId, postId) {
+    try {
+      await CommentsService.upVote(commentId, postId);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async downVote(commentId, postId) {
+    try {
+      await CommentsService.downVote(commentId, postId);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

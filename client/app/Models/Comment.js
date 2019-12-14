@@ -4,6 +4,8 @@ export default class Comment {
     this.postId = data.postId;
     this.userId = data.userId;
     this.body = data.body;
+    this.upCount = data.upCount;
+    this.downCount = data.downCount;
   }
 
   get Template() {
@@ -14,8 +16,8 @@ export default class Comment {
 
     <button type="button"  onclick="app.commentsController.removeCommentAsync('${this.id}','${this.postId}')">x</button>
     <button type="button"  onclick="app.commentsController.loadEditTemplate('${this.id}','${this.postId}')">Edit</button>
-    <button type="button" onclick="app.commentsController.upVote('${this.id}')">Up</button>
-    <button type="button" onclick="app.commentsController.downVote('${this.id}')">Down</button>  
+    <button type="button" onclick="app.commentsController.upVote('${this.id}','${this.postId}')">Up</button>
+    <button type="button" onclick="app.commentsController.downVote('${this.id}','${this.postId}')">Down</button>  
     </div>
 </div>
     
