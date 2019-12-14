@@ -15,10 +15,10 @@ export default class CommentsController {
     store.subscribe("comments", _drawComments);
   }
 
-  async removeCommentAsync(commentId) {
-    //NOTE deal with only allowing creator to delete
+  async removeCommentAsync(commentId, postId) {
+    console.log(commentId);
     try {
-      await CommentsService.removeCommentAsync(commentId);
+      await CommentsService.removeCommentAsync(commentId, postId);
     } catch (error) {
       console.error("Error:", error);
     }
