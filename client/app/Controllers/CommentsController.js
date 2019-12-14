@@ -40,4 +40,10 @@ export default class CommentsController {
       console.error("Error:", error);
     }
   }
+
+  loadEditTemplate(commentId) {
+    let comment = store.State.comments.find(c => c.id == commentId);
+    let template = comment.editTemplate;
+    document.querySelector("#comments").innerHTML = template;
+  }
 }

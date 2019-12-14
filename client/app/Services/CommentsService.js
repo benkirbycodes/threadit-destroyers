@@ -15,8 +15,10 @@ class CommentsService {
   async editCommentAsync(update) {
     //NOTE Check that update.commentId is what you think it is
     let comment = store.State.comments.find(c => c.id == update.commentId);
+    console.log(update);
     //NOTE How do you make sure only creator can edit?
-    let res = await _commentApi.put(update.commentId, comment);
+    let res = await _commentApi.put(update.commentId, update);
+    console.log(res);
     this.getCommentsAsync(update.postId);
   }
   async removeCommentAsync(commentId, postId) {
