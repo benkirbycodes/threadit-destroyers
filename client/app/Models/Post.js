@@ -25,6 +25,8 @@ export default class Post {
   </div>
   <button type="button" class="btn btn-danger" onclick="app.postsController.removePostAsync('${this.id}')">x</button>
   <button type="button" onclick="app.postsController.loadEditPostDetailTemplate('${this.id}')">Edit</button>
+  <button type="button" onclick="app.postsController.upVote('${this.id}')">Up</button>
+    <button type="button" onclick="app.postsController.downVote('${this.id}')">Down</button>  
   <div id="comments"></div> 
   <form onsubmit="app.postsController.addCommentAsync(event, '${this.id}')">
   <div class="form-group">
@@ -32,6 +34,7 @@ export default class Post {
   </div>
   <button type="submit">Add</button>
   <button type="button" onclick="app.postsController.resetActivePost()">Back</button>
+  
   </form>
   </div>
     `;
