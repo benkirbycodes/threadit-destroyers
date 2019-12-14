@@ -38,7 +38,7 @@ class PostsService {
   }
 
   async delete(id) {
-    let data = await _repository.findOneAndRemove(id);
+    let data = await _repository.findOneAndRemove({ _id: id });
     if (!data) {
       throw new Error("Invalid Update Id");
     }
