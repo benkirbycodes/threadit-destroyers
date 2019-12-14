@@ -37,6 +37,8 @@ export default class CommentsController {
       next(error);
     }
   }
+
+
   async delete(req, res, next) {
     try {
       await commentsService.delete(req.params.id);
