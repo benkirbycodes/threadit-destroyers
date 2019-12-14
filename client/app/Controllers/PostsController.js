@@ -131,6 +131,7 @@ export default class PostsController {
   async upVote(postId) {
     try {
       await PostsService.upVote(postId);
+      CommentsService.getCommentsAsync(postId);
     } catch (error) {
       console.error(error);
     }
@@ -138,6 +139,7 @@ export default class PostsController {
   async downVote(postId) {
     try {
       await PostsService.downVote(postId);
+      CommentsService.getCommentsAsync(postId);
     } catch (error) {
       console.error(error);
     }

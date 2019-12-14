@@ -13,6 +13,24 @@ const _commentApi = axios.create({
   timeout: 8000
 });
 class CommentsService {
+  async downVote(commentId, postId) {
+    let comment = store.State.comments.find(c => c.id == commentId);
+    comment.downCount += 1;
+    console.log(comment);
+    let res = await _commentApi.put(comment.id, comment);
+    console.log(res.data);
+    this.getCommentsAsync(postId);
+  }
+  async upVote(commentId, postId) {
+    let comment = store.State.comments.find(c => c.id == commentId);
+    comment.upCount += 1;
+    console.log(comment);
+    let res = await _commentApi.put(comment.id, comment);
+    console.log(res.data);
+    this.getCommentsAsync(postId);
+    //let comments = store.State.comments.forEach(c => new Comment(c));
+    //store.commit("comments", comments);
+  }
   async editCommentAsync(update) {
     //NOTE Check that update.commentId is what you think it is
     let comment = store.State.comments.find(c => c.id == update.commentId);
