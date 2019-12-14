@@ -13,6 +13,7 @@ function _drawComments() {
 export default class CommentsController {
   constructor() {
     store.subscribe("comments", _drawComments);
+    store.subscribe("activeComment", _drawComments);
   }
 
   async removeCommentAsync(commentId, postId) {
@@ -34,10 +35,18 @@ export default class CommentsController {
       commentId: commentId
     };
     form.reset();
+
     try {
       await CommentsService.editCommentAsync(update);
     } catch (error) {
       console.error("Error:", error);
     }
+  }
+
+  loadEditTemplate(commentId, postId) {
+    let comment = store.State.comments.find(c => c.id == commentId);
+    let template = comment.editTemplate;
+    document.querySelector("#comments").innerHTML = template;
+    //CommentsService.getCommentsAsync(postId);
   }
 }
