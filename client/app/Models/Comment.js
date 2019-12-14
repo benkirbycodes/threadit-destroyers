@@ -14,7 +14,9 @@ export default class Comment {
 
     <button type="button"  onclick="app.commentsController.removeCommentAsync('${this.id}','${this.postId}')">x</button>
     <button type="button"  onclick="app.commentsController.loadEditTemplate('${this.id}','${this.postId}')">Edit</button>
-  </div>
+    <button type="button" onclick="app.commentsController.upVote('${this.id}')">Up</button>
+    <button type="button" onclick="app.commentsController.downVote('${this.id}')">Down</button>  
+    </div>
 </div>
     
     `;
