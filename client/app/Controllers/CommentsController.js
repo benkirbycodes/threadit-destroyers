@@ -2,7 +2,12 @@ import CommentsService from "../Services/CommentsService.js";
 import store from "../store.js";
 
 //Private
-function _drawComments() {}
+function _drawComments() {
+  let template = "";
+  let comments = store.State.comments;
+  comments.forEach(c => (template += c.Template));
+  document.querySelector("#comments").innerHTML = template;
+}
 
 //Public
 export default class CommentsController {

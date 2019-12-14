@@ -1,6 +1,7 @@
 import PostsService from "../Services/PostsService.js";
 import store from "../store.js";
 import CommentsService from "../Services/CommentsService.js";
+import commentsService from "../Services/CommentsService.js";
 
 //Private
 function _drawPosts() {
@@ -57,6 +58,7 @@ export default class PostsController {
     let template = post.PostDetailTemplate;
     console.log(template);
     document.querySelector("#posts").innerHTML = template;
+    commentsService.getCommentsAsync(postId);
   }
   async addPostAsync(event) {
     console.log(event);
