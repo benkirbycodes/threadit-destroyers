@@ -12,6 +12,7 @@ export default class Comment {
   <div class="card-body">
     <p class="card-text">${this.body}</p>
     <button type="button"  onclick="app.commentsController.removeCommentAsync('${this.id}','${this.postId}')">x</button>
+    <button type="button"  onclick="app.commentsController.editCommentAsync('${this.id}','${this.postId}')">Edit</button>
   </div>
 </div>
     

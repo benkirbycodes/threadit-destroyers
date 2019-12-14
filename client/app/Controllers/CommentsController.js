@@ -16,20 +16,22 @@ export default class CommentsController {
   }
 
   async removeCommentAsync(commentId, postId) {
-    console.log(commentId);
-    try {
-      await CommentsService.removeCommentAsync(commentId, postId);
-    } catch (error) {
-      console.error("Error:", error);
+    if (confirm("Are You Sure You Want To Delete This Post?")) {
+      console.log(commentId);
+      try {
+        await CommentsService.removeCommentAsync(commentId, postId);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
   }
-  async editCommentAsync(event) {
+  async editCommentAsync(event, commentId, postId) {
     event.preventDefault();
     let form = event.target;
     let update = {
       body: form.body.value,
-      postId: form.postId.value,
-      commentId: form.commentId.value
+      postId: postId,
+      commentId: commentId
     };
     form.reset();
     try {

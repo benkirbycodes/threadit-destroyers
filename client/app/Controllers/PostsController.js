@@ -78,11 +78,12 @@ export default class PostsController {
     }
   }
   async removePostAsync(postId) {
-    //NOTE deal with only allowing creator to delete
-    try {
-      await PostsService.removePostAsync(postId);
-    } catch (error) {
-      console.error("Error:", error);
+    if (confirm("Are You Sure You Want To Delete This Post?")) {
+      try {
+        await PostsService.removePostAsync(postId);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
   }
   async editPostAsync(event) {
